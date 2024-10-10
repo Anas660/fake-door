@@ -1,4 +1,3 @@
-import { useLogin } from "@/hooks/useLogin";
 import {
   Box,
   Button,
@@ -11,6 +10,7 @@ import {
 import Image from "next/image";
 import React, { useState } from "react";
 import { Navbar } from "./Navbar";
+import { useLogin } from "../hooks/useLogin";
 
 export const Login = () => {
   const [email, setEmail] = useState("");
@@ -24,7 +24,6 @@ export const Login = () => {
 
   return (
     <>
-      <Navbar />
       <Container>
         <Grid
           container
