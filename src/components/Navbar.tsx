@@ -32,7 +32,6 @@ export const Navbar = () => {
           justifyContent: "space-between",
           alignItems: "center",
           paddingX: 5,
-          mb: 1,
         }}
       >
         <Box>
@@ -41,7 +40,7 @@ export const Navbar = () => {
               "https://fakedoor.com/_next/static/media/logo-physics.236e5a5e.svg"
             }
             alt="navbar"
-            height={"80"}
+            height={"60"}
             width={"200"}
           />
         </Box>
