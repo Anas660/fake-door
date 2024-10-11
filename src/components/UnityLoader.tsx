@@ -1,9 +1,27 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Box, CircularProgress } from "@mui/material"; // Import MUI Box for layout
+import { Box, CircularProgress } from "@mui/material";
+import { useEffect, useRef, useState } from "react";
+
+declare global {
+  interface Window {
+    createUnityInstance: (
+      canvas: HTMLCanvasElement,
+      options: {
+        dataUrl: string;
+        frameworkUrl: string;
+        codeUrl: string;
+        streamingAssetsUrl: string;
+        companyName: string;
+        productName: string;
+        productVersion: string;
+      }
+    ) => Promise<any>;
+  }
+}
 
 const UnityLoader = () => {
   const unityContainerRef = useRef<HTMLDivElement>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
   useEffect(() => {
     const buildUrl = "/unity-webgl-build"; // Path to your WebGL build folder
     const container = unityContainerRef.current;
@@ -29,11 +47,11 @@ const UnityLoader = () => {
               productName: "YourProduct",
               productVersion: "1.0",
             })
-            .then((unityInstance: any) => {
+            .then((unityInstance) => {
               console.log("Unity WebGL is loaded");
               setIsLoading(false);
             })
-            .catch((message: string) => {
+            .catch((message) => {
               console.error("Unity loading error:", message);
               setIsLoading(false);
             });
@@ -59,6 +77,19 @@ const UnityLoader = () => {
 
   return (
     <>
+      {isLoading && (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            width: "100%",
+            height: "100%",
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      )}
       <Box
         ref={unityContainerRef}
         id="unity-container"
@@ -66,7 +97,12 @@ const UnityLoader = () => {
           borderRadius: 4,
           width: "100%",
           height: "75vh",
-          canvas: { width: "100%", height: "93%", borderRadius: "20px" }, // Ensure the canvas fills its parent
+          canvas: {
+            width: "100%",
+            height: "93%",
+            borderRadius: "20px",
+            objectFit: "cover",
+          },
         }}
       />
     </>

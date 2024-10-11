@@ -35,7 +35,7 @@ const Lesson = () => {
       <Box
         sx={{
           height: { xs: "auto", md: "70vh" },
-          width: "auto",
+          width: "100%",
           bgcolor: "#F6F7FF",
           borderRadius: 5,
           padding: 1,

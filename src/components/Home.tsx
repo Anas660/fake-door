@@ -9,17 +9,17 @@ import React from "react";
 import GoBackIcon from "../assets/Icons/GoBackIcon";
 import LessonsList from "./LessonsList";
 import { useGetLessons } from "../hooks/useGetLessons";
-import Image from "next/image"; // Import Image if you're using Next.js
 import Lesson from "./Lesson";
 
 const Home = () => {
   const { data, isLoading } = useGetLessons();
 
   return (
-    <Container
-      maxWidth="lg"
+    <Box
+      // maxWidth="lg"
       sx={{
         mt: 5,
+        paddingX: 6,
       }}
     >
       <Grid
@@ -67,7 +67,7 @@ const Home = () => {
                 <CircularProgress />
               ) : (
                 <>
-                  {data?.content.slice(0, 6).map((lesson, index) => (
+                  {data?.content.slice(0, 5).map((lesson, index) => (
                     <LessonsList
                       key={lesson.id}
                       lesson={lesson}
@@ -88,17 +88,11 @@ const Home = () => {
               height: "100%",
             }}
           >
-            {/* <Image
-              src={"https://fakedoor.com/assets/images/space.svg"}
-              alt="img"
-              width={45}
-              height={45}
-            /> */}
             <Lesson />
           </Box>
         </Grid>
       </Grid>
-    </Container>
+    </Box>
   );
 };
 

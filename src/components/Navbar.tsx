@@ -1,20 +1,24 @@
 import {
   Avatar,
   Box,
-  Button,
   Divider,
-  Popover,
-  Typography,
+  ListItemIcon,
+  ListItemText,
+  Menu,
+  MenuItem,
 } from "@mui/material";
 import Image from "next/image";
+import { useRouter } from "next/router";
 import React from "react";
+import { LogoutIcon } from "../assets/Icons/LogoutIcon";
 
 export const Navbar = () => {
+  const router = useRouter();
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
   );
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
 
@@ -22,8 +26,15 @@ export const Navbar = () => {
     setAnchorEl(null);
   };
 
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    handleClose();
+    router.push("/login");
+  };
+
   const open = Boolean(anchorEl);
-  const id = open ? "simple-popover" : undefined;
+  const id = open ? "simple-menu" : undefined;
+
   return (
     <>
       <Box
@@ -40,28 +51,42 @@ export const Navbar = () => {
               "https://fakedoor.com/_next/static/media/logo-physics.236e5a5e.svg"
             }
             alt="navbar"
-            height={"60"}
-            width={"200"}
+            height={60}
+            width={200}
           />
         </Box>
         <Box>
           <div>
-            <Box onClick={handleClick}>
+            <Box
+              onClick={handleClick}
+              sx={{
+                cursor: "pointer",
+              }}
+            >
               <Avatar>A</Avatar>
             </Box>
 
-            <Popover
+            <Menu
               id={id}
-              open={open}
               anchorEl={anchorEl}
+              open={open}
               onClose={handleClose}
               anchorOrigin={{
                 vertical: "bottom",
-                horizontal: "left",
+                horizontal: "right",
+              }}
+              transformOrigin={{
+                vertical: "top",
+                horizontal: "right",
               }}
             >
-              <Typography sx={{ p: 2 }}>The content of the Popover.</Typography>
-            </Popover>
+              <MenuItem onClick={handleLogout}>
+                <ListItemIcon>
+                  <LogoutIcon />
+                </ListItemIcon>
+                <ListItemText>Logout</ListItemText>
+              </MenuItem>
+            </Menu>
           </div>
         </Box>
       </Box>
