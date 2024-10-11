@@ -7,7 +7,6 @@
 # Preparation
 
 In the fake-door repo `git clone main`
-Create a unity-webgl-build folder in your public directory and add the WebGL files from Lesson 01 into it.
 Execute `npm run dev` on repo
 
 # How to test
