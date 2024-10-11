@@ -1,11 +1,21 @@
 import { Box } from "@mui/material";
-import React, { PropsWithChildren } from "react";
+import React, { PropsWithChildren, useEffect } from "react";
 import { Navbar } from "../components/Navbar";
-import { QueryProvider } from "../provider/QueryProvider";
+import { useRouter } from "next/router";
 
 interface AppLayoutProps extends PropsWithChildren {}
 
 const AppLayout = ({ children }: AppLayoutProps) => {
+  const router = useRouter();
+
+  useEffect(() => {
+    const user = localStorage.getItem("user");
+
+    if (!user) {
+      router.push("/login");
+    }
+  }, [router]);
+
   return (
     <Box
       sx={{

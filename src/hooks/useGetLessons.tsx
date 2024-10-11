@@ -8,7 +8,6 @@ export const useGetLessons = () => {
     retry: false,
     refetchOnWindowFocus: false,
   });
-  console.log("first", data?.content);
 
   return {
     data,

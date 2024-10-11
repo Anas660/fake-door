@@ -1,9 +1,11 @@
 import {
+  Alert,
   Box,
   Button,
   Container,
   Divider,
   Grid,
+  Snackbar,
   TextField,
   Typography,
 } from "@mui/material";
@@ -15,7 +17,9 @@ import { useLogin } from "../hooks/useLogin";
 export const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { handleLogin } = useLogin();
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+
+  const { handleLogin } = useLogin(setSnackbarOpen);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -180,6 +184,19 @@ export const Login = () => {
           </Grid>
         </Grid>
       </Container>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={() => setSnackbarOpen(false)}
+      >
+        <Alert
+          onClose={() => setSnackbarOpen(false)}
+          severity="error"
+          sx={{ width: "100%" }}
+        >
+          Invalid credentials!
+        </Alert>
+      </Snackbar>
     </>
   );
 };
