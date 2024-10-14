@@ -12,11 +12,11 @@ import { useGetLessons } from "../hooks/useGetLessons";
 import Lesson from "./Lesson";
 
 const Home = () => {
-  const { data, isLoading } = useGetLessons();
+  const { data, isLoading } = useGetLessons(); // Fetching lesson data and loading state from custom hook
 
   return (
+    // Wrapper Box for the main content,
     <Box
-      // maxWidth="lg"
       sx={{
         mt: 5,
         paddingX: 6,
@@ -64,9 +64,10 @@ const Home = () => {
             </Box>
             <>
               {isLoading ? (
-                <CircularProgress />
+                <CircularProgress /> // Shows loading spinner if data is still being fetched
               ) : (
                 <>
+                  {/* Mapping over the first 5 lessons*/}
                   {data?.content.slice(0, 5).map((lesson, index) => (
                     <LessonsList
                       key={lesson.id}

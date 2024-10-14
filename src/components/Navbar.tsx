@@ -13,7 +13,9 @@ import React from "react";
 import { LogoutIcon } from "../assets/Icons/LogoutIcon";
 
 export const Navbar = () => {
-  const router = useRouter();
+  const router = useRouter(); // Next.js router for navigation
+
+  // State to control the position of the menu
   const [anchorEl, setAnchorEl] = React.useState<HTMLButtonElement | null>(
     null
   );
@@ -26,6 +28,7 @@ export const Navbar = () => {
     setAnchorEl(null);
   };
 
+  // Handle user logout
   const handleLogout = () => {
     localStorage.removeItem("user");
     handleClose();

@@ -15,10 +15,12 @@ import { Navbar } from "./Navbar";
 import { useLogin } from "../hooks/useLogin";
 
 export const Login = () => {
+  // States for form inputs and snackbar
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [snackbarOpen, setSnackbarOpen] = useState(false);
 
+  // Custom hook to handle login functionality
   const { handleLogin } = useLogin(setSnackbarOpen);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -110,7 +112,7 @@ export const Login = () => {
                   paddingY: 1.2,
                 }}
                 size="large"
-                type="submit" // Set type to submit to trigger the form submission
+                type="submit" // Triggers form submission
               >
                 Login
               </Button>
@@ -186,7 +188,7 @@ export const Login = () => {
       </Container>
       <Snackbar
         open={snackbarOpen}
-        autoHideDuration={6000}
+        autoHideDuration={6000} // Automatically hides after 6 seconds
         onClose={() => setSnackbarOpen(false)}
       >
         <Alert
