@@ -53,3 +53,7 @@ SEO Enhancements
 # Demo Video
 
 https://www.loom.com/share/57471caf359b424a9a4c597990ef8fa2
+
+# CORS Policy Requirement
+
+The provided api url `https://fake-door-develop.azurewebsites.net/api/lessons/get-simple` has a strict cross-origin policy, which means you might encounter issues accessing resources, To fetch the list of lessons, you can use an extension that allows cross-origin policy, for example https://chromewebstore.google.com/detail/allow-cors-access-control/lhobafahddgcelffkeicbaginigeejlf?hl=en-US&utm_source=ext_sidebar
