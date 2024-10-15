@@ -64,10 +64,15 @@ const Home = () => {
             </Box>
             <>
               {isLoading ? (
-                <CircularProgress /> // Shows loading spinner if data is still being fetched
+                <CircularProgress />
+              ) : !data || data?.content.length === 0 ? (
+                <Typography variant="body1" color="error" mt={2}>
+                  Unable to load lessons. Please enable CORS policy in your
+                  browser to access the lesson list.
+                </Typography>
               ) : (
                 <>
-                  {/* Mapping over the first 5 lessons*/}
+                  {/* Mapping over the first 5 lessons */}
                   {data?.content.slice(0, 5).map((lesson, index) => (
                     <LessonsList
                       key={lesson.id}
